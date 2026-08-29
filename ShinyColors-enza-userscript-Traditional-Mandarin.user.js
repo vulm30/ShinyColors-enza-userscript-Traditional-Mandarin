@@ -2,9 +2,9 @@
 // @name         偶像大師 Shiny Colors 繁體中文化與字體增強插件 (ShinyColors-enza-userscript-Traditional-Mandarin)
 // @namespace    https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
 // @version      1.13.8
-// @description  偶像大師 Shiny Colors 繁體中文（Traditional Mandarin）漢化與字體增強腳本。基於 biuuu/ShinyColors 漢化專案衍生，增強 OpenCC 繁中詞庫即時轉換、優先套用「jf open 粉圓 2.1」字型並提升字體粗細度（Bold）以改善閱讀體驗。
+// @description  偶像大師 Shiny Colors 繁體中文（Traditional Mandarin）漢化與字體增強腳本。基於 biuuu/ShinyColors 漢化專案衍生，整合 OpenCC 繁中詞庫即時轉換、優先套用「jf open 粉圓 2.1」字型並提升字體粗細度（Bold）以改善閱讀體驗。
 // @icon         https://shinycolors.enza.fun/icon_192x192.png
-// @author       biuuu & vulm30
+// @author       biuuu (Original Author)
 // @homepage     https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
 // @supportURL   https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin/issues
 // @updateURL    https://raw.githubusercontent.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin/main/ShinyColors-enza-userscript-Traditional-Mandarin.user.js
@@ -29,13 +29,10 @@
  * 專案首頁: https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
  * 授權條款: MIT License
  *
- * 致謝與衍生聲明:
- * 1. 本腳本之遊戲數據攔截、文本替換架構修改衍生自原作者 biuuu 的開源專案:
- *    https://github.com/biuuu/ShinyColors
- * 2. 本分支 (Custom Fork) 主要增強與修改:
- *    - 繁體中文化 (Traditional Mandarin): 內建輕量化 OpenCC 4000+ 字符對照與 2500+ 高頻詞彙即時轉換引擎。
- *    - 外掛字體注入: 優先支援本地安裝之「jf open 粉圓 2.1」，並配置線上字體作為備援。
- *    - 字體粗細度增強 (Bold): 全面調整 PIXI 文字渲染層 (fontWeight='bold')，提升視覺對比度與易讀性。
+ * 致謝與第三方開源聲明 (Credits & Acknowledgements):
+ * 1. 漢化主框架與資料攔截: 原作者 biuuu (https://github.com/biuuu/ShinyColors) - MIT License
+ * 2. 繁簡中文轉換詞庫與字符對照: OpenCC 開放中文轉換 (https://github.com/BYVoid/OpenCC) - Apache 2.0 License
+ * 3. 預設推薦字型: justfont / jf open 粉圓 (https://justfont.com/huninn/) - SIL Open Font License 1.1
  * =========================================================================
  */
 !function(){"use strict";

@@ -4,24 +4,28 @@
 
 ---
 
-## 📌 專案聲明與致謝
+## 📌 專案聲明與致謝 (Credits & Acknowledgements)
 
-1. **原作者與上游專案**：
-   - 本專案修改並衍生自原作者 **biuuu** 的開源漢化專案：[biuuu/ShinyColors](https://github.com/biuuu/ShinyColors)。
-   - 核心遊戲數據攔截與漢化架構均屬於原作者與原漢化翻譯團隊。
+本專案僅為社群非官方的個人客製版本，主要感謝以下優秀開源專案與創作者的貢獻：
 
-2. **本分支（Fork / Custom Version）所做的修改與增強**：
-   - **繁體中文化轉換（Traditional Mandarin）**：整合 OpenCC 字符對照與詞庫轉換機制，將原本的簡體漢化即時轉為繁體中文（正體中文）。
-   - **外掛指定字體**：內建字體注入機制，優先適配並套用由 Justfont 開源之「`jf open 粉圓 2.1`」（若本機未安裝則自動載入線上開源圓體作為 Fallback）。
-   - **字體粗細度增強（Bold）**：全面調整 PIXI 引擎中文字渲染的 FontWeight 與樣式，提升文字對比度與閱讀舒適度。
+1. **漢化主框架與資料攔截**：
+   - 核心遊戲數據攔截與漢化架構完全修改衍生自原作者 **biuuu** 的開源漢化專案：[biuuu/ShinyColors](https://github.com/biuuu/ShinyColors)（MIT License）。
+   - 感謝原作者與所有參與該專案文本翻譯的漢化社群成員。
+
+2. **繁簡轉換引擎資料庫**：
+   - 本腳本內建之字符對照與詞彙庫基於 [OpenCC (開放中文轉換)](https://github.com/BYVoid/OpenCC)（Apache 2.0 License）資料集提取並最佳化。
+
+3. **外掛字型**：
+   - 預設優先載入之「jf open 粉圓」字型由 [justfont](https://justfont.com/huninn/) 基於 COSMIC LILY 開源釋出（SIL Open Font License 1.1）。
 
 ---
 
-## ✨ 功能特色
+## 🔧 本分支主要增強特色
 
-- **繁體中文即時呈現**：劇情對話、介面選項、卡片技能全面繁體化。
-- **高清晰度視覺體驗**：搭配「jf open 粉圓」字型與粗體效果，字形飽滿且清晰易讀。
-- **輕量化架構**：字典與樣式經編譯最佳化，載入迅速不卡頓。
+- **繁體中文即時轉換（Traditional Mandarin）**：整合 OpenCC 字符與詞庫轉換邏輯，將遊戲對話、介面與技能即時轉為繁體中文（正體中文）。
+- **外掛字體注入**：優先適配並套用本地安裝之「`jf open 粉圓 2.1`」（若本機未安裝則自動載入線上開源圓體作為備援）。
+- **字體粗細度增強（Bold）**：全面調整 PIXI 文字渲染層之 FontWeight 與樣式，提升文字對比度與易讀性。
+- **輕量化架構**：字典與樣式經構建最佳化，載入迅速不卡頓。
 
 ---
 
@@ -32,7 +36,7 @@
 
 ### 步驟 2：推薦安裝本地字體（可選，但強烈建議）
 本腳本預設優先套用本地安裝的「jf open 粉圓 2.1」：
-- 前往 Justfont 官方下載並安裝 [jf open 粉圓](https://justfont.com/huninn/)。
+- 前往 justfont 官方下載並安裝 [jf open 粉圓](https://justfont.com/huninn/)。
 - 安裝後無需其他設定，腳本會自動讀取並套用。
 
 ### 步驟 3：安裝腳本
@@ -58,6 +62,7 @@
 
 - **開源授權**：本專案依循上游專案採用 [MIT License](LICENSE) 授權。
 - **字型授權**：專案引用的「jf open 粉圓」基於 [SIL Open Font License 1.1](https://scripts.sil.org/OFL) 釋出。
+- **繁簡字典**：本專案繁簡轉換詞庫衍生自 [OpenCC](https://github.com/BYVoid/OpenCC)（Apache 2.0 License）。
 - **免責聲明**：
   - 《偶像大師 閃耀色彩》（THE IDOLM@STER SHINY COLORS）的所有遊戲內容、美術資產、文字及商標權利均歸屬 **萬代南夢宮娛樂（Bandai Namco Entertainment Inc.）** 所有。
   - 本專案僅供個人學習、研究與輔助遊戲體驗使用，嚴禁任何形式的商業營利行為。
