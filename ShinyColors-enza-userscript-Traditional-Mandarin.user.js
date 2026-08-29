@@ -1,10 +1,14 @@
 // ==UserScript==
-// @name         偶像大师ShinyColors汉化 (繁體機翻增強版 - jf粉圓體輕量版)
-// @namespace    https://github.com/biuuu/ShinyColors
+// @name         偶像大師 Shiny Colors 繁體中文化與字體增強插件 (ShinyColors-enza-userscript-Traditional-Mandarin)
+// @namespace    https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
 // @version      1.13.8
-// @description  偶像大師 Shiny Colors 繁體中文漢化與機翻增強插件 (完美套用 jf open 粉圓 2.1 / 秒速載入)
+// @description  偶像大師 Shiny Colors 繁體中文（Traditional Mandarin）漢化與字體增強腳本。基於 biuuu/ShinyColors 漢化專案衍生，增強 OpenCC 繁中詞庫即時轉換、優先套用「jf open 粉圓 2.1」字型並提升字體粗細度（Bold）以改善閱讀體驗。
 // @icon         https://shinycolors.enza.fun/icon_192x192.png
-// @author       biuuu & AI Enhanced
+// @author       biuuu & vulm30
+// @homepage     https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
+// @supportURL   https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin/issues
+// @updateURL    https://raw.githubusercontent.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin/main/ShinyColors-enza-userscript-Traditional-Mandarin.user.js
+// @downloadURL  https://raw.githubusercontent.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin/main/ShinyColors-enza-userscript-Traditional-Mandarin.user.js
 // @match        https://shinycolors.enza.fun/*
 // @run-at       document-start
 // @grant        GM_xmlhttpRequest
@@ -16,9 +20,24 @@
 // @connect      fonts.googleapis.com
 // @connect      fonts.gstatic.com
 // @connect      cdn.jsdelivr.net
-// @updateURL    https://www.shiny.fun/ShinyColors.user.js
-// @supportURL   https://github.com/biuuu/ShinyColors/issues
 // ==/UserScript==
+/*
+ * =========================================================================
+ * 偶像大師 Shiny Colors 繁體中文化與字體增強插件
+ * (ShinyColors-enza-userscript-Traditional-Mandarin)
+ *
+ * 專案首頁: https://github.com/vulm30/ShinyColors-enza-userscript-Traditional-Mandarin
+ * 授權條款: MIT License
+ *
+ * 致謝與衍生聲明:
+ * 1. 本腳本之遊戲數據攔截、文本替換架構修改衍生自原作者 biuuu 的開源專案:
+ *    https://github.com/biuuu/ShinyColors
+ * 2. 本分支 (Custom Fork) 主要增強與修改:
+ *    - 繁體中文化 (Traditional Mandarin): 內建輕量化 OpenCC 4000+ 字符對照與 2500+ 高頻詞彙即時轉換引擎。
+ *    - 外掛字體注入: 優先支援本地安裝之「jf open 粉圓 2.1」，並配置線上字體作為備援。
+ *    - 字體粗細度增強 (Bold): 全面調整 PIXI 文字渲染層 (fontWeight='bold')，提升視覺對比度與易讀性。
+ * =========================================================================
+ */
 !function(){"use strict";
 
 // =========================================================================
