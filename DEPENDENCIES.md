@@ -40,15 +40,45 @@
 
 ---
 
-## 二、功能性依賴（壞了會少功能，但遊戲照跑）
+## 二、譯文的三層 fallback（這三個是一條鏈，不是三個獨立功能）
+
+🔴 **2026-08-31 更正**：本節原把 `ai.shiny.fun` 記為「LLM 即時機翻，執行時生成」。**那是錯的**，讀碼後確認它是**靜態檔主機**，提供預先生成好的 AI 譯文 CSV。原記述來自未查證的推測。
+
+一段劇情要顯示時，程式依序嘗試：
+
+| 層 | 來源 | 形態 | 何時用 |
+|---|---|---|---|
+| ① | `www.shiny.fun/data/story/<id>.csv` | **人工翻譯**，品質最好 | 一律優先 |
+| ② | `ai.shiny.fun/story.json` → `/story/<t>.csv` | **預先生成的 AI 譯文靜態 CSV** | ①沒有該檔，且「機翻」設定為 on |
+| ③ | `api.interpreter.caiyunai.com` | **即時翻譯**，把當下日文台詞送出去翻（4KB 分塊） | ②也沒有 |
+
+實測（2026-08-31）：`ai.shiny.fun/story.json` ✅ 200、49,093 bytes、**索引 1,037 個劇情檔**。
+
+### 🔴 三層其實全部吊在 `www.shiny.fun` 上
+
+`manifest.json` 的欄位實測為：`hash, version, hashes, moduleId, cyweb_token, trans_api, language, ai_host, date`。
+
+- **第③層的彩雲 token 來自 manifest 的 `cyweb_token`**（程式碼寫 `Gr.data.cyweb_token`，`Gr.data` 即 manifest）
+- 供應商也由 manifest 決定（`Gr.data.trans_api`，實測值 `caiyun`，程式碼中只有 `"caiyun" === e` 一個分支）
+
+→ **manifest 拿不到 = 三層全滅**，不只第①層。單點故障比原先記述更集中。
+
+備註：manifest 帶了 `ai_host` 欄位，但這個版本的程式碼**沒有讀它**（`ai_host` 全檔 4 個出現點皆為 `T.ai_host`，無一來自 manifest）。
+
+### 其他
 
 | 服務 | 用途 | 壞掉會怎樣 | 備案 |
 |---|---|---|---|
-| `ai.shiny.fun` | LLM 即時機翻，補未收錄的台詞 | 那些句子顯示原文 | 無。此為上游服務 |
 | `comic.shiny.fun` | 四格漫畫的中文版圖與標題（`/4ko.json`、`/4ko/`） | 顯示原版圖 | ✅ 程式有 `try/catch` 回退空 Map，不會拋錯 |
-| `api.interpreter.caiyunai.com` | 彩雲小譯即時翻譯（需 token，另以 `fanyi.caiyunapp.com` 當 origin/referer） | 該翻譯功能失效 | 無。第三方商業 API |
 
-存活實測：`comic.shiny.fun/4ko.json` ✅ 200。`ai.shiny.fun` 根路徑回 404，但那是 API 主機，**根路徑 404 不代表服務已停**，未進一步確認。
+存活實測：`comic.shiny.fun/4ko.json` ✅ 200。
+
+### 端點可用 URL hash 覆寫（未見於任何說明文件）
+
+`F()` 會解析 `location.hash`，以 `;` 分段、`=` 分鍵值，鍵名須在 `O` 陣列中。`O = P = ["origin","ai_host","font1","font2","timeout","story","auto","bgm","dev","transCover"]`。
+
+→ **`origin` 與 `ai_host` 都可以直接用網址覆寫**，例如在遊戲網址後接 `#ai_host=https://<自架位置>`。這是切換備援來源最快的方式，比選單更直接（選單只提供「修改資料來源」＝`origin`，沒有 `ai_host` 的入口）。
+※ 此為讀碼判定，未實機驗證。
 
 ---
 
